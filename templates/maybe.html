@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#210c1b">
+  <title>A Note for You</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;1,500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body class="maybe-page">
+  <div class="ambient ambient-one"></div><div class="ambient ambient-two"></div>
+  <header class="topbar"><a class="brand" href="{{ url_for('home') }}"><span class="brand-heart">♥</span> a little love story</a><span class="top-note">A NOTE FROM THE HEART <span>✦</span></span></header>
+  <main class="note-card">
+    <div class="note-emblem" aria-hidden="true"><span>♡</span></div>
+    <div class="eyebrow"><span></span> THERE’S NO RUSH <span></span></div>
+    <h1>Some feelings<br>are worth <em>taking<br>your time with.</em></h1>
+    <div class="note-divider"><span>✦</span></div>
+    <p class="note-message">More than anything, I want you to feel comfortable and be true to yourself. You mean a lot to me, and that won’t change just because you need a little time to think.</p>
+    <p class="note-signoff">Whenever you’re ready, I’ll be here. <span>♥</span></p>
+    <a class="button button-yes note-back" href="{{ url_for('home') }}"><span>↶</span> Back to my question</a>
+    <p class="note-footer">SENT WITH CARE, ALWAYS</p>
+  </main>
+</body>
+</html>

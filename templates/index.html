@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#210c1b">
+  <title>For You, With Love</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body class="invitation-page">
+  <div class="ambient ambient-one"></div><div class="ambient ambient-two"></div>
+  <header class="topbar"><a class="brand" href="{{ url_for('home') }}"><span class="brand-heart">♥</span> a little love story</a><span class="top-note">MADE JUST FOR YOU <span>✦</span></span></header>
+  <main class="hero-layout">
+    <section class="hero-copy">
+      <div class="eyebrow"><span></span> A QUESTION FROM THE HEART <span></span></div>
+      <p class="script-kicker">To my favorite person,</p>
+      <h1>Somehow, every<br>love song <em>sounds</em><br>like you.</h1>
+      <p class="hero-description">Life feels a little more magical with you in it. So, under a sky full of cherry blossoms, I have one very important question…</p>
+      {% if error %}<p class="form-error" role="alert">{{ error }}</p>{% endif %}
+      <div class="answer-area" id="answer-area">
+        <div class="answer-buttons" id="answer-buttons">
+          <button class="button button-yes" id="yes-button" type="button">Yes, always <span>♥</span></button>
+          <a class="button button-no" href="{{ url_for('maybe') }}">Maybe later</a>
+        </div>
+        <p class="answer-note" id="answer-note">No pressure, just a little hope <span>♡</span></p>
+      </div>
+      <form class="memory-form" id="memory-form" method="post" enctype="multipart/form-data" hidden>
+        <p class="form-heading">I knew my heart had good taste <span>♥</span></p>
+        <p class="form-caption">Add two favorite photos and keep this little moment.</p>
+        <div class="upload-grid">
+          <label class="upload-card" for="photo1"><span class="upload-preview" id="preview1">＋</span><span class="upload-label">Our favorite moment</span><span class="upload-hint" id="hint1">Choose a photo</span><input id="photo1" type="file" name="photo1" accept="image/*" required></label>
+          <label class="upload-card" for="photo2"><span class="upload-preview" id="preview2">＋</span><span class="upload-label">Another little memory</span><span class="upload-hint" id="hint2">Choose a photo</span><input id="photo2" type="file" name="photo2" accept="image/*" required></label>
+        </div>
+        <button class="button button-yes save-button" type="submit">Save our moment <span>↗</span></button>
+      </form>
+    </section>
+    <section class="hero-art" aria-label="A couple watching the sunset beneath cherry blossoms">
+      <div class="art-image"></div><div class="art-shade"></div>
+      <div class="art-stamp"><span>♡</span><small>YOU + ME<br>ALWAYS</small></div>
+      <div class="art-caption"><span>01 — OUR LITTLE UNIVERSE</span><p>“In every lifetime,<br>I’d find my way to you.”</p></div>
+      <span class="art-sparkle sparkle-one">✧</span><span class="art-sparkle sparkle-two">✦</span>
+    </section>
+  </main>
+  <footer class="footer"><span>WITH ALL MY HEART <span class="footer-heart">♥</span></span><span>MADE OF LITTLE MOMENTS & BIG FEELINGS</span></footer>
+  <audio id="bg-music" loop preload="none"><source src="{{ url_for('static', filename='Tum_se_Hi_Song_ringtone_ringtone_Lofi_remix_song_48KBPS.mp4') }}" type="audio/mp4"></audio>
+  <script>
+    const yesButton = document.getElementById('yes-button');
+    const answerArea = document.getElementById('answer-area');
+    const memoryForm = document.getElementById('memory-form');
+    const note = document.getElementById('answer-note');
+    const music = document.getElementById('bg-music');
+    yesButton.addEventListener('click', () => {
+      answerArea.hidden = true;
+      memoryForm.hidden = false;
+      document.querySelector('.hero-copy h1').innerHTML = 'You make my<br>whole world feel<br><em>like spring.</em>';
+      document.querySelector('.script-kicker').textContent = 'The beginning of our forever,';
+      document.querySelector('.hero-description').textContent = 'That just made my whole day. Let’s save a couple of our favorite moments together.';
+      music.play().catch(() => {});
+      memoryForm.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    });
+    [1, 2].forEach((number) => {
+      const input = document.getElementById(`photo${number}`);
+      input.addEventListener('change', () => {
+        const file = input.files[0];
+        if (!file) return;
+        const preview = document.getElementById(`preview${number}`);
+        preview.style.backgroundImage = `url("${URL.createObjectURL(file)}")`;
+        preview.classList.add('has-image');
+        document.getElementById(`hint${number}`).textContent = file.name;
+      });
+    });
+    document.addEventListener('click', () => { if (music.paused && !memoryForm.hidden) music.play().catch(() => {}); }, { once: true });
+    for (let i = 0; i < 18; i++) {
+      const petal = document.createElement('span');
+      petal.className = 'petal'; petal.textContent = Math.random() > .5 ? '✿' : '·';
+      petal.style.left = `${Math.random() * 100}%`; petal.style.animationDelay = `${Math.random() * 12}s`;
+      petal.style.animationDuration = `${10 + Math.random() * 10}s`; document.body.appendChild(petal);
+    }
+  </script>
+</body>
+</html>

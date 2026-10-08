@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#210c1b"><title>Our Little Universe</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body class="result-page">
+  <div class="ambient ambient-one"></div><div class="ambient ambient-two"></div>
+  <main class="memory-card">
+    <div class="eyebrow"><span></span> A MOMENT TO KEEP <span></span></div>
+    <div class="result-heart">♥</div>
+    <h1>Our little<br><em>universe.</em></h1>
+    <p class="result-intro">Here’s to all the little moments that make our story ours.</p>
+    <div class="memory-photos">{% for photo in photos %}<figure><img src="{{ photo }}" alt="A favorite memory together"><figcaption>forever favorite <span>♡</span></figcaption></figure>{% endfor %}</div>
+    <a class="button button-yes back-button" href="{{ url_for('home') }}">Back to our story <span>↗</span></a>
+    <p class="result-signoff">WITH ALL MY HEART <span>♥</span></p>
+  </main>
+</body>
+</html>
